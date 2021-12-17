@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+	<script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<div>
+	
+	
+	<tr>
+	
+	<div class="col-sm-5" align = "center">
+                 <div class="panel-body" align = "center" >
+                 <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      		<th>Student ID</th>
+            <th>Student Name</th>
+            <th>email</th>
+            <th>phno</th>
+            <th>collage</th>
+   	</tr>
+  </thead>
+  <tbody>
+      <tr  th:each="student : ${liststudent }">
+		<td th:text="${login.id}">Student ID</td>
+		<td th:text="${login.username}">StudentName</td>
+		<td th:text="${login.email}">email</td>
+		<td th:text="${login.phno}">phno</td>	
+		<td th:text="${login.collage}">collage</td>				
+			    
+		</tr> 
+   
+  </tbody>
+</table>
+                    
+                 </div>
+
+            </div> 
+
+	</tr>
+
+	</tbody>
+	</table>
+	<div>
+</body>
+</html>
