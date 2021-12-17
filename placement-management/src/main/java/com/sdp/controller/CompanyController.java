@@ -25,13 +25,13 @@ public class CompanyController {
 	@GetMapping("/createcompany")
 	public ModelAndView addCompany() {
 		//org.springframework.web.servlet.ModelAndView.ModelAndView(String viewName, String modelName, Object modelObject)
-		return new ModelAndView("createcompany","company",new Company());
+		return new ModelAndView("company/createcompany","company",new Company());
 	}
 
 	@GetMapping("")
 	public ModelAndView createCompany() {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("companyhome");
+		mv.setViewName("company/companyhome");
 		return mv;
 	}
 	
@@ -39,7 +39,7 @@ public class CompanyController {
 	public ModelAndView saveCompany(@ModelAttribute("company") Company company) {
 		companyService.saveOrUpdate(company);
 		ModelAndView mv = new ModelAndView("SuccessSubmitCompany");
-		mv.addObject("company_name", company.getCompany_name());
+		mv.addObject("company/company_name", company.getCompany_name());
 		return mv;
 	}
 	
@@ -47,7 +47,7 @@ public class CompanyController {
 	public ModelAndView listAllCompanies(HttpServletRequest request) {
 		List<Company> lst = companyService.getAllCompanies();
 		request.setAttribute("companies",lst);
-		ModelAndView mv = new ModelAndView("ListAllCompanies");
+		ModelAndView mv = new ModelAndView("company/ListAllCompanies");
 		return mv;
 	}
 
