@@ -31,6 +31,7 @@ public class UserController {
 
     @PostMapping("/loginpage")
     public ModelAndView login(@RequestParam String username, @RequestParam String password,HttpServletRequest request, HttpServletResponse response){
+    	System.out.println("\nUserController.java ---> user loginpage");
     	String uname = request.getParameter("username");
     	User user = userService.findUsernameAndPassword(username,password);
         if(user!=null) {
@@ -46,11 +47,13 @@ public class UserController {
 
     @PostMapping("/signuppage")
     private ModelAndView signup(@Valid @ModelAttribute("usersSignup") User users,BindingResult result,RedirectAttributes attr){
-		if(result.hasErrors()){
+    	System.out.println("\nUserController.java ---> Creating Account(Sign up) for Student");
+    	if(result.hasErrors()){
 			attr.addFlashAttribute("errorMsg",result.getFieldError().getDefaultMessage());
 			return new ModelAndView("redirect:/signuppage");
 		}
 		else if(userService.findUsername(users.getUsername())!=null){
+			
 			attr.addFlashAttribute("errorMsg","username was already exist");
 			return new ModelAndView("redirect:/signuppage");
 		}
@@ -96,13 +99,17 @@ public class UserController {
 	
 	@GetMapping("/studentlist")
 	public ModelAndView listAllCompanies(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		System.out.println("\nUserController.java ---> List all companies");
+		
 		HttpSession session = request.getSession();
     	if(session.getAttribute("username")==null) 
     	{
+    		System.out.println("\nUserController.java ---> Return to loginpage You are not admin!");
 			ModelAndView mav = new ModelAndView("loginpage");
 			return mav;
 		}
     	else{
+    		System.out.println("\nUserController.java ----> Listing all students");
 		List<User> users = userService.getallusers();
 		request.setAttribute("users",users);
 		ModelAndView mv = new ModelAndView("studentlist");
@@ -112,6 +119,7 @@ public class UserController {
 	}
 	@RequestMapping("/sdelete")
     public String delete(@RequestParam long id) {
+		System.out.println("\nUserController.java ----> Student is successfully removed from website");
 		userService.sdelete(id);
         return "redirect:/studentlist";
     }

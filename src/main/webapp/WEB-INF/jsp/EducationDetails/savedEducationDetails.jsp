@@ -53,72 +53,61 @@ table{
 }
 
 </style>
-    <title>PROFILE</title>
+    <title>Education Details</title>
     <meta charset="utf-8">
-        <script>
-        function myFunction() {
-        var x = document.getElementById("password");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-        }
-    </script>
+   
    
 </head>
 <body>
 
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 
             <div class="box">
-                <h2>Profile</h2><hr>
+                <h2>Education Details</h2><hr>
                 <form action="#">
                    
                 <table>
                 <tr>
-                        <td>Student Id: </td>
+                        <td>School Name: </td>
                         <td>
-                            <input style="height:30px; width:300px;" type="text" value="${idno}"   id="idno" disabled>
+                            <input style="height:30px; width:300px;" type="text" value="${educationdetails.getSchoolname()}"   id="idno" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <td>Username: </td>
+                        <td>School CGPA: </td>
                         <td>
-                            <input style="height:30px; width:300px;" type="text" value="${username}"   id="username" disabled>
+                            <input style="height:30px; width:300px;" type="text" value="${educationdetails.getSchoolcgpa()}"   id="username" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <td>Name</td>
+                        <td>Inter College Name</td>
                         <td>
-                            <input style="height:30px; width:300px;" type="text" value="${name}"   id="name" disabled>
+                            <input style="height:30px; width:300px;" type="text" value="${educationdetails.getIntercollagename()}"   id="name" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <td>Email</td>
+                        <td>Inter CGPA </td>
                         <td>
-                            <input style="height:30px; width:300px;" type="email" value="${email}"   id="email" disabled>
+                            <input style="height:30px; width:300px;" type="email" value="${educationdetails.getIntercgpa()}"   id="email" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <td>Password</td>
+                        <td>BTech College Name</td>
                         <td>
-                            <input style="height:30px; width:300px;" type="password" value="${password}"   id="password" disabled><br>
-                            <input type="checkbox" onclick="myFunction()">Show Password
+                            <input style="height:30px; width:300px;"  value="${educationdetails.getBtechcollagename()}"   id="password" disabled><br>
                         </td>
                     </tr>
                     <tr>
-                        <td>Phone</td>
+                        <td>BTech CGPA</td>
                         <td>
-                            <input style="height:30px; width:300px;" type="phone" value="${phone}"   id="phone" disabled>
+                        <input style="height:30px; width:300px;"  value="${educationdetails.getBtechcgpa()}"   id="password" disabled><br>
+                            
                         </td>
                     </tr>
                 </table>
 
-                <center>
-                    <a href="/educationdetails" style="text-decoration: none; color: dodgerblue;">Education Profile</a>
-                </center>
+                
             </form>
             </div>
            

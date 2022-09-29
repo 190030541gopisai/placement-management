@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>LOGIN</title>
+<title>Admin Login</title>
 <meta charset="utf-8">
         <style>
     

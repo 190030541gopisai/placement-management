@@ -111,54 +111,42 @@ body {
 </style>
 </head>
 <body>
-<div class="topnav">
-	      
-	      <form method="POST" id="myform" action="/logout"></form>
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <a href="/" class="nav-link">Home</a>
-	          <% if(session.getAttribute("username")!=null){%>
-	          	
-				<a href="/profile" class="nav-link">Profile</a>
-				<a href="/job" class="nav-link">job</a>
-					<a class="nav-link" href="#" onclick="document.getElementById('myform').submit()" >Logout</a>
-				<h2 style="color:white; text-align: right;">welcome <%=session.getAttribute("username")%></h2>
-	          <%}else{%>
-	          <a href="/aboutus" class="nav-link">About Us</a>
-	          <a href="/contactus" class="nav-link">Contact Us</a>
-	          	<a href="/adminlogin" class="nav-link">IRP Login</a>
-	          	<a href="/loginpage" class="nav-link">Student Login</a>
-	          <%}%>
-	        </ul>
-	      </div>
-	    </div>
-<!-- END nav -->
+<%@ include file="../header.jsp" %>
 
+		<h1>Please enter carefully <mark style="color:red;">No More Change</mark> can be done Once Entered!</h1>
 		<form:form method="post" action="educationdetails/save" modelAttribute ="education_details" class="form-style-9"> 
+		<h1>Education Details</h1>
 			<ul>	
+				School Name 
 				<li>
-					<form:input path = "schoolname" placeholder="Enter School name"  class="field-style field-split align-left" /><br>
+					<form:input path = "schoolname" placeholder="Enter School name" class="field-style field-split align-left" /><br>
 				</li>
+				School CGPA
 				<li>
 					<form:input path = "schoolcgpa" placeholder="Enter Schoolpa cgpa"  class="field-style field-split align-left" /><br>
 				</li>
+				Inter College Name
 				<li>
 					<form:input path = "intercollagename" placeholder="Enter inter collage name"  class="field-style field-split align-left" /><br>
 				</li>
+				Inter College CGPA 
 				<li>
 					<form:input path = "intercgpa" placeholder="Enter inter cgpa"  class="field-style field-split align-left" /><br>
 				</li>
+				Btech College/University Name 
 				<li>
 					<form:input path = "btechcollagename" placeholder="Enter btech collage name"  class="field-style field-split align-left" /><br>
 				</li>
+				Btech CGPA 
 				<li>
 					<form:input path = "btechcgpa" placeholder="Enter btech cgpa"  class="field-style field-split align-left" /><br>
 				</li>
+				No Of Backlogs 
 				<li>
 					<form:input path = "noofbacklogs" placeholder="Enter no of backlogs"  class="field-style field-split align-left" /><br>
 				</li>
 			
-			<input type="submit" value = "create">
+			<input type="submit" style="" value = "create">
 			</ul>
 		</form:form>
 </body>

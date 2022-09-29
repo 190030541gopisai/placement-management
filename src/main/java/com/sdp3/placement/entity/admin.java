@@ -14,13 +14,8 @@ public class admin {
     private String username;
     private String password;
 
-    
-public admin()
- {
-		
-}
 
-public admin(Long id, String username, String password) {
+	public admin(Long id, String username, String password) {
 		
 		this.id = id;
 		this.username = username;

@@ -49,7 +49,7 @@ body {
 	        <ul class="navbar-nav ml-auto">
 	          <a href="/adminhome" class="nav-link">Home</a>
 	          
-	          <% if(session.getAttribute("username")!=null){%>
+	          <% if(session.getAttribute("username")!=null ){%>
 					<a href="/studentlist" class="nav-link">Student List</a>
 			          <a href="/signuppage" class="nav-link">Add Student</a>
 			          <a href="/allcompanies" class="nav-link">Jobs List</a>

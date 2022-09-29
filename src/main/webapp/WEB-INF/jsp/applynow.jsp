@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +46,7 @@ body {
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
-    max-width: 600px;
+    max-width: 80%;
 }
 
 
@@ -74,72 +76,78 @@ th, td {
    
 </head>
 <body>
+            
 
-			<%@ include file="header.jsp" %>
-            <div class="box">
-                <h2>Apply now</h2><hr>
-                <h4>Company Details</h4>
-                <table>
-                	<tr>
-                		<th>Id</th>
-                		<th>Name</th>
-                		<th>Website</th>
-                		<th>Industry</th>
-                		<th>Vacancies</th>
-                	</tr>
-                	<tr>
-                		<td>${company.getId()}</td>
-                		<td>${company.getCompany_name()}</td>
-                		<td>${company.getCompany_website() }</td>
-                		<td>${company.getIndustry()}</td>
-			    		<td>${company.getCompany_size()}</td>
-                	</tr>
-                	
-			    	
-                </table>
-            	<h4>Student details</h4>
-                <form action="#">
-                
-                  
-                <table>
-                    <tr>
-                        <td>Username: </td>
-                        <td>
-                            <input style="height:30px; width:300px;" type="text" value="${user.getUsername()}"   id="username" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Name</td>
-                        <td>
-                            <input style="height:30px; width:300px;" type="text" value="${user.getName()}"   id="name" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>
-                            <input style="height:30px; width:300px;" type="email" value="${user.getEmail()}"   id="email" disabled>
-                        </td>
-                    </tr>
+		<%@ include file="header.jsp" %>
+        <div>
+            <!-- 
+            <form method="post">
+                <div class="box">
+                    <h2>Apply now</h2><hr>
+                    <h4>Company Details</h4>
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Website</th>
+                            <th>Industry</th>
+                            <th>Vacancies</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name = "company_id" value="${company.getId()}" disabled> </td>
+                            <td><input type="text" name = "company_name" value="${company.getCompany_name()}" disabled> </td>
+                            <td><input type="text" name = "company_website" value="${company.getCompany_website()}" disabled></td>
+                            <td><input type="text" name = "company_industry" value="${company.getIndustry()}" disabled> </td>
+                            <td><input type="text" name = "company_size" value="${company.getCompany_size()}" disabled> </td>
+                        </tr>
+                    </table>
+            	    <h4>Student details</h4>
+                    <table>
+                        <tr>
+                            <td>Username: </td>
+                            <td>
+                                <input  name="username" type="text" value="${user.getUsername()}"   id="username" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>
+                                <input  name="name" type="text" value="${user.getName()}"   id="name" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>
+                                <input  name="email" type="email" value="${user.getEmail()}"   id="email" disabled>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Phone</td>
+                            <td>
+                                <input  name="phone" type="phone" value="${user.getPhone()}"   id="phone" disabled>
+                            </td>
                     
-                    <tr>
-                        <td>Phone</td>
-                        <td>
-                            <input style="height:30px; width:300px;" type="phone" value="${user.getPhone()}"   id="phone" disabled>
-                        </td>
-                   
-                    </tr>
-                    
-                     <td>id</td>
-                       <td><input style="height:30px; width:300px;" type="id" value="${user.getIdno()}" id="id" disabled></td>
-                    </tr>
-                </table>
+                        </tr>
+                        
+                        <td>id</td>
+                        <td><input  name="sid" type="text" value="${user.getIdno()}" id="id" disabled></td>
+                        </tr>
+                    </table>
 
                 <p>For account deactivation please contact to site owner</p>
                 <center>
-                    <a href="" style="text-decoration: none; color: dodgerblue;">Apply now</a>
+                    
                 </center>
             </form>
-            </div>
+            -->
+            Details
+            <form:form method="post" action="/submitapplynow" modelAttribute="appliedJob">
+              <form:input type="text" name = "company_id" path="userid" value="${company.getId()}" disabled/>
+            	<form:input  name="sid" type="text" path="company_id" value="${user.getIdno()}" disabled/>
+            	<input type="submit" value="Apply Now" style=" color: dodgerblue;"/>
+            </form:form>
+        </div>
            
 
 </body>

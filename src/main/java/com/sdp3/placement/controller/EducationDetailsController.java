@@ -41,7 +41,7 @@ public class EducationDetailsController {
 		User user = users.get(0);				
 		ed.setUser(user);
 		edservice.saveEducationDetails(ed);
-		return new ModelAndView(url+"educationdetails", "education_details", new EducationDetails());		
+		return new ModelAndView("redirect:/educationdetails");
 	}
 
 //		@PostMapping("/save")
@@ -64,7 +64,30 @@ public class EducationDetailsController {
 			return mav;
 		}
     	else {
+    		List<User> users = userService.getUserbyName((String)session.getAttribute("username"));
+    		User user = users.get(0);
+//    		String userid = String.valueOf(user.getIdno());
+    		Long userid = user.getIdno();
+//    		List<EducationDetails> e = edservice.getEducationDetailsByStudentId(userid);
+    		//education details id
+    		Long edid = edservice.getEducationDetailsByStudentId(userid);
+    		if(edid!=null) {
+    			 EducationDetails ed = edservice.getRemainingDetails(userid);
+    			 ModelAndView mv =  new ModelAndView(url+"savedEducationDetails");
+    			 mv.addObject("educationdetails", ed);
+    			 return mv;
+    		}
+//    		EducationDetails edid = edservice.getEducationDetailsByStudentId(userid);
+//    		System.out.println(edid);
+//    		EducationDetails ed = edservice.findById(edid);
+//    		if(ed!=null) {
+//    			return new ModelAndView("redirect:/");
+//    		}
+    		System.out.println("\nEducationDetailsController.java ----> No Education Details, please provide now");
+    		 
 		return new ModelAndView(url+"educationdetails", "education_details", new EducationDetails());		
     	}
 	}
+	
+	
 }

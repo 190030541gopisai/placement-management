@@ -103,7 +103,7 @@ body {
 				<form:input placeholder="Industry" class="field-style field-split align-left" path = "industry"/><br>
 			</li>
 			<li>
-				<form:input placeholder="Size of company" class="field-style field-split align-left"  path = "company_size"/><br>
+				<form:input placeholder="Vacancies" class="field-style field-split align-left"  path = "company_size"/><br>
 			</li>
 		<input type="submit" value = "create">
 	</form:form>

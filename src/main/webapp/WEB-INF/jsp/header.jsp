@@ -42,7 +42,8 @@
 	          <% if(session.getAttribute("username")!=null){%>
 	          	
 				<a href="/profile" class="nav-link">Profile</a>
-				<a href="/job" class="nav-link">job</a>
+				<a href="/job" class="nav-link">View Jobs</a>
+				<a href="/appliedjobs" class="nav-link">Applied Jobs</a>
 				<!--  <a href="/quizhome" class="nav-link">Mock Test</a> -->
 					<a class="nav-link" href="#" onclick="document.getElementById('myform').submit()" >Logout</a>
 				<h2 style="color:white; text-align: right;">welcome <%=session.getAttribute("username")%></h2>

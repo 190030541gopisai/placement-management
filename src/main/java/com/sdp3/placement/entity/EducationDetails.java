@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
-@Entity
+@Entity(name = "edetails")
 public class EducationDetails {
 
 	@Id
@@ -17,9 +17,12 @@ public class EducationDetails {
 	private Long eid;
 		
 		
+		
 		@OneToOne
 		@JoinColumn(name = "sid",referencedColumnName = "idno",unique = true)
 		private User user;
+		
+		
 		
 		private String schoolname;
 		private String schoolcgpa;
@@ -35,12 +38,7 @@ public class EducationDetails {
 		public void setEid(Long eid) {
 			this.eid = eid;
 		}
-		//		public Long getId() {
-//			return id;
-//		}
-//		public void setId(Long id) {
-//			this.id = id;
-//		}
+
 		public User getUser() {
 			return user;
 		}

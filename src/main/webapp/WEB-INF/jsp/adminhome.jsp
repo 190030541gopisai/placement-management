@@ -7,5 +7,6 @@
 </head>
 <body style="background-color:orange;">
 	<%@ include file = "adminheader.jsp" %>
+	<h1 style="text-align: center;">Welcome to Admin Home Page</h1>
 </body>
 </html>

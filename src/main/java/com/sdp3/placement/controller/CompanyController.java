@@ -29,15 +29,16 @@ public class CompanyController {
 	
 	@GetMapping("/createcompany")
 	public ModelAndView addCompany(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		System.out.println("\nCompanyController.java ----> Create Job Profile Form Page Http: GET");
 		HttpSession session = request.getSession();
 		String username = (String) session.getAttribute("username");
-    	if(!username.equals("admin")) 
+    	if(username==null || username.equals("admin")==false) 
     	{
-    		System.out.println("You are not admin!");
-			ModelAndView mav = new ModelAndView("index");
+    		System.out.println("\nCompanyController.java ----> You are not admin!");
+			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
 		}
-    
+    	System.out.println("\nCompanyController.java ---> Create Job(Company) Form ");
 		return new ModelAndView("createcompany","company",new Company());
     	
 	}
@@ -53,6 +54,7 @@ public class CompanyController {
 	
 	@PostMapping("/submitCompany")
 	public ModelAndView saveCompany(@ModelAttribute("company") Company company) {
+		System.out.println("\nCompanyController.java ----> Saving Job Profile of a company");
 		companyService.saveOrUpdate(company);
 		ModelAndView mv = new ModelAndView("createcompany");
 		mv.addObject("company_name", company.getCompany_name());
@@ -61,12 +63,13 @@ public class CompanyController {
 	
 	@GetMapping("/allcompanies")
 	public ModelAndView listAllCompanies(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		System.out.println("\nCompanyController.java ----> All Company Job Profiles");
 		HttpSession session = request.getSession();
 		String username = (String) session.getAttribute("username");
-    	if(!username.equals("admin")) 
+    	if(username==null || username.equals("admin")==false) 
     	{
-    		System.out.println("You are not admin!");
-			ModelAndView mav = new ModelAndView("index");
+    		System.out.println("\nCompanyController.java ----> You are not admin!");
+			ModelAndView mav = new ModelAndView("redirect:/");
 			return mav;
 		}
     	else {

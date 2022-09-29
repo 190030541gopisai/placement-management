@@ -2,6 +2,7 @@ package com.sdp3.placement.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,8 @@ public class CompanyService {
 	}
 	
 	public Company getCompanyById(long id) {
-			return companyRepository.findById(id).get();
+		  Optional<Company> company = companyRepository.findById(id);
+			return  company.get();
 	}
 	
 	public Company saveOrUpdate(Company Company) {

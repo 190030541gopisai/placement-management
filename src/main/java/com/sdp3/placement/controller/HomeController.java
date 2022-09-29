@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sdp3.placement.entity.AppliedJob;
 import com.sdp3.placement.entity.Company;
 import com.sdp3.placement.entity.EducationDetails;
 import com.sdp3.placement.entity.User;
+import com.sdp3.placement.services.AppliedJobService;
 import com.sdp3.placement.services.CompanyService;
 import com.sdp3.placement.services.EducationDetailsService;
 import com.sdp3.placement.services.UserService;
@@ -32,6 +34,9 @@ public class HomeController {
 	
 	@Autowired
 	EducationDetailsService edService;
+	
+	@Autowired
+	private AppliedJobService ajservice;
 
     @GetMapping("/")
     public ModelAndView home(){
@@ -101,25 +106,27 @@ public class HomeController {
     
     @GetMapping("/signuppage")
     public ModelAndView signup(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+    	System.out.println("\nHomeController.java ---> signuppage for student");
     	HttpSession session = request.getSession();
     	String username = (String) session.getAttribute("username");
-    	System.out.println(username);
-    	if(username.equals("admin")==true) 
+    	if(username!=null && username.equals("admin")==true) 
     	{
-    		System.out.println("You are not admin!");
+    		System.out.println("\nHomeController.java ---> You are admin You can create accounts for student");
 			ModelAndView mav = new ModelAndView("signup");
 			return mav;
 		}
-		System.out.println("wirking");
+		System.out.println("\\nHomeController.java ---> Return to Admin Login Page Because You are not Admin!");
 		return new ModelAndView("redirect:/loginpage");
 	
     }
 
 	@GetMapping("/profile")
 	public ModelAndView profile(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		System.out.println("HomeController.java ---> profile");
 		HttpSession session = request.getSession();
 		String user = (String) session.getAttribute("username");
 		List<User> users = userServices.getUserbyId(user);
+		
 		
 		
 		
@@ -176,10 +183,13 @@ public class HomeController {
 //    public String deletecompany(@PathVariable(name = "id") int id)
 	@GetMapping("/applynow")
 	public ModelAndView applynow(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		System.out.println("\nHomeController.java --> applying job HTTP : GET ");
+			
+		
 		HttpSession session = request.getSession();
 		String username = (String) session.getAttribute("username");
-		System.out.println("working");
 		List<User> users = userServices.getUserbyId(username);
+		
 		long company_id = Long.valueOf(request.getParameter("id"));
 		System.out.println(company_id);
 		Company company = companyService.getCompanyById(company_id);
@@ -187,12 +197,26 @@ public class HomeController {
     		return new ModelAndView("redirect:/loginpage");
     	}
     	else {
-    		ModelAndView mv = new ModelAndView();
-    		mv.addObject("user", users.get(0));
-    		mv.addObject("company", company);
-    		mv.setViewName("applynow");
     		
-    		return mv;
+    		AppliedJob job = new AppliedJob();
+    		
+    		if(users.size()!=0) {
+    			job.setUserid(users.get(0).getIdno());
+    		}
+    		if(company!=null) {
+    			job.setCompany_id(company.getId());
+    			job.setCompany_name(company.getCompany_name());
+    			job.setIndustry(company.getIndustry());
+    			ajservice.saveEducationDetails(job);
+    			
+    			System.out.println("\nHomeController.java ---> Applied To Job");
+    		}
+    		return new ModelAndView("redirect:/appliedjobs");
+//    		ModelAndView mv = new ModelAndView();
+//    		mv.addObject("user", users.get(0));
+//    		mv.addObject("company", company);
+//    		mv.setViewName("applynow");
+//    		return mv;
     	}
 	}
 	
